@@ -1,0 +1,61 @@
+#!/bin/bash
+# our comment is here
+function sub {
+if [ $# -ne 2 ]
+then
+echo -1
+else
+echo $(( $1 - $2 ))
+fi
+}
+function add {
+if [ $# -ne 2 ]
+then
+echo -1
+else
+echo $(( $1 + $2 ))
+fi
+}
+function mul {
+if [ $# -ne 2 ]
+then
+echo -1
+else
+echo $(( $1 * $2 ))
+fi
+}
+function div {
+if [ $# -ne 2 ]
+then
+echo -1
+else
+echo $(( $1 / $2 ))
+fi
+}
+if [ -n "$1" ]
+then
+case "$1" in
+-calc) echo "Found the -calc option" 
+    case "$2" in 
+    add) value=$(add $3 $4)
+        echo $value;;
+    sub) value=$(sub $3 $4)
+        echo $value;;
+    mul) value=$(mul $3 $4)
+        echo $value;;
+    div) value=$(div $3 $4)
+        echo $value;;
+    *) echo "$2 in not a correct operation for calc";;
+    esac
+    ;;
+-search) echo "Found the -search option" ;;
+-reverse) echo "Found the -reverse option" ;;
+-strlen) echo "Found the -strlen option" ;;
+-log) echo "Foundivd the -log option" ;;
+-exit) echo "Found the -exit option" ;;
+-help) echo "Found the -help option" ;;
+*) echo "$1 is not an option" ;;
+esac
+else
+echo "No parameters found. "
+fi
